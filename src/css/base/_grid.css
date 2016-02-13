@@ -1,0 +1,23 @@
+.container {
+  max-width: 96em;
+  margin: 0 auto;
+}
+
+.col {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+.col-4 {
+  width: 32%;
+  padding: 0 1em;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+}

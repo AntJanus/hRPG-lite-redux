@@ -1,0 +1,48 @@
+.tasks {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    border: 1px solid #000;
+    background-color: #dadada;
+    box-sizing: border-box;
+    padding: 15px;
+    margin-bottom: 5px;
+
+    &:hover {
+      background-color: #efefef;
+    }
+  }
+
+  .task-positive {
+    background-color: #BFEAB7;
+
+    &:hover {
+      background-color: #B6BFB4;
+    }
+  }
+
+  .task-negative {
+    background-color: #FCD1CD;
+
+    &:hover {
+      background-color: #B9AB9B;
+    }
+  }
+
+  .task-neutral {
+    background-color: #FCFACD;
+
+    &:hover {
+      background-color: #D6CAA8;
+    }
+  }
+}
+
+.task-content {
+  padding-left: 5px;
+}
+
+.task-action {
+  cursor: pointer;
+}
