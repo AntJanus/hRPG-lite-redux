@@ -4,6 +4,8 @@ import fetch from 'isomorphic-fetch';
 export const GET_AUTH = 'GET_AUTH';
 export const UPDATE_AUTH = 'UPDATE_AUTH';
 
+export const LOGOUT = 'LOGOUT';
+
 export const GET_TASKS = 'GET_TASKS';
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';
 
@@ -13,9 +15,12 @@ export const COMPLETED_TASK = 'COMPLETED_TASK';
 export const FAIL_TASK = 'FAIL_TASK';
 
 export function getAuth() {
+  let auth = JSON.parse(localStorage.getItem('auth'));
+
   return {
     type: GET_AUTH,
     payload: {
+      auth
     }
   };
 }
@@ -27,6 +32,12 @@ export function updateUserAuth(apiKey, uuId) {
       uuId,
       apiKey
     }
+  };
+}
+
+export function logout() {
+  return {
+    type: LOGOUT
   };
 }
 

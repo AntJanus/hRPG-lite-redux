@@ -1,17 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getAuth, updateUserAuth, fetchTasks, completeTask } from './actions';
+import { getAuth, updateUserAuth, fetchTasks, completeTask } from '../actions/actions';
+
+//components
 import TaskList from './taskList';
+import Navigation from './nav';
 
 class HabiticaApp extends Component {
   constructor(props) {
     super(props);
-  }
-
-  updateAuth(apiKey, uuId) {
-    const { dispatch } = this.props;
-    dispatch(updateUserAuth(apiKey, uuId));
-    this.refreshTasks();
   }
 
   refreshTasks() {
@@ -32,6 +29,7 @@ class HabiticaApp extends Component {
 
     this.refreshTasks();
   }
+
   render() {
     const { dispatch, habit, daily, todo, auth } = this.props;
 
@@ -39,18 +37,7 @@ class HabiticaApp extends Component {
 
     return (
       <div>
-        <div className="container">
-          <div className="col col-4">
-            <a onClick={(e) => this.refreshTasks()}><span className="fa fa-refresh"></span></a>
-          </div>
-          <div className="col col-4">
-            <input type="text" ref={node => apiKey = node }  placeholder="Api Key"/>
-            <input type="text" ref={node => uuId = node }  placeholder="UUID"/>
-            <a onClick={(e) => this.updateAuth(apiKey.value, uuId.value)}>
-              <span className="fa fa-plus"></span>
-            </a>
-          </div>
-        </div>
+        <Navigation />
 
         { auth && auth.apiKey && auth.uuId ? (
           <div className="container">

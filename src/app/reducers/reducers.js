@@ -1,6 +1,6 @@
-import { GET_AUTH, UPDATE_AUTH, GET_TASKS, RECEIVE_TASKS, COMPLETED_TASK, ADDED_TASK } from './actions';
+import { GET_AUTH, UPDATE_AUTH, LOGOUT, GET_TASKS, RECEIVE_TASKS, COMPLETED_TASK, ADDED_TASK } from '../actions/actions';
 
-export default habiticaApp;
+export default rootReducer;
 
 export const initialState = {
   habit: [],
@@ -23,7 +23,7 @@ function reduceTask(state, action) {
   }
 }
 
-function habiticaApp(state = initialState, action) {
+function rootReducer(state = initialState, action) {
   switch(action.type) {
     case GET_TASKS:
     case RECEIVE_TASKS:
@@ -37,9 +37,11 @@ function habiticaApp(state = initialState, action) {
       s[action.payload.task.type] = [ ...state[action.payload.task.type], action.payload.task];
       return Object.assign({}, state, s);
     case GET_AUTH:
-      return Object.assign({}, state, { auth: JSON.parse(localStorage.getItem('auth')) });
+      return Object.assign({}, state, { auth: action.payload.auth });
     case UPDATE_AUTH:
-      return Object.assign({}, state, { auth: action.payload });
+      return Object.assign({}, state, { auth: Object.assign({}, action.payload, { loggedIn: true }) } );
+    case LOGOUT:
+      return Object.assign({}, state, { auth: { loggedIn: false}});
     default:
       return state;
   };

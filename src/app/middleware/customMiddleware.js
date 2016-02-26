@@ -4,8 +4,11 @@ export function storeAuth({ getState }) {
 
     let returnValue = next(action);
 
-    if(state.auth && state.auth.uuId && state.auth.apiKey) {
+    console.log(state.auth, 'auth');
+    if(state.auth.loggedIn) {
       localStorage.setItem('auth', JSON.stringify(state.auth));
+    } else {
+      localStorage.setItem('auth', JSON.stringify({}));
     }
 
     return returnValue;

@@ -3,12 +3,12 @@ import { render } from 'react-dom';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import App from './app';
-import Reducers from './reducers';
+import App from './views/app';
+import Reducers from './reducers/reducers';
 
-import { storeAuth } from './customMiddleware';
+import { storeAuth } from './middleware/customMiddleware';
 
-let store = createStore(Reducers, undefined, applyMiddleware(storeAuth, thunkMiddleware));
+let store = createStore(Reducers, applyMiddleware(storeAuth, thunkMiddleware));
 
 let rootElement = document.getElementById('root');
 

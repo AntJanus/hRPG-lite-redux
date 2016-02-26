@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTask } from './actions';
+import { addTask } from '../actions/actions';
+
+//components
+import Task from './task';
 
 class TaskList extends Component {
 
@@ -29,25 +32,7 @@ class TaskList extends Component {
         </a>
         <ul className="tasks">
           { tasks.map(task =>
-            <li className={ task.completed ? '' : parseInt(task.value) > 0 ? 'task-positive' : parseInt(task.value) < 0 ? 'task-negative' : 'task-neutral' }
-                key={task.id}>
-                <a className="task-action"
-                  onClick={() => onCompleteTask(task)}
-                >
-                  <span className="fa fa-square-o"></span>
-                </a>
-
-                <span className="task-content">
-                  {task.text}
-                  {task.streak ? (
-                      <span>
-                        {' ' + task.streak}
-                        <span className="fa fa-forward"></span>
-                      </span>
-                    ): ''}
-                </span>
-
-            </li>
+            <Task task={task} onCompleteTask={onCompleteTask} key={task.id} />
           )}
         </ul>
       </div>
