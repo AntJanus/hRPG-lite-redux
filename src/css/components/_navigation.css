@@ -1,0 +1,25 @@
+.navigation {
+  line-height: 2em;
+  box-shadow: 0 0 1px #000;
+}
+
+.nav-title {
+  display: block;
+}
+
+ul.nav {
+  text-align: right;
+
+  li {
+    margin-left: 15px;
+
+    a {
+      display: block;
+      padding: 0 5px;
+
+      &:hover {
+        background: #aeaeae;
+      }
+    }
+  }
+}

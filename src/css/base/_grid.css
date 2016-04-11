@@ -1,16 +1,15 @@
 .container {
   max-width: 96em;
   margin: 0 auto;
+  padding: 0 5px;
+  box-sizing: border-box;
 }
 
 .col {
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
-}
 
-.col-4 {
-  width: 32%;
   padding: 0 1em;
 
   &:first-child {
@@ -20,4 +19,20 @@
   &:last-child {
     padding-right: 0;
   }
+}
+
+.col-2 {
+  width: 16%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 32%;
+}
+
+.col-7 {
+  width: 58%;
 }

@@ -4,7 +4,6 @@ export function storeAuth({ getState }) {
 
     let returnValue = next(action);
 
-    console.log(state.auth, 'auth');
     if(state.auth.loggedIn) {
       localStorage.setItem('auth', JSON.stringify(state.auth));
     } else {

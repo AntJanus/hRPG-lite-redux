@@ -41,17 +41,30 @@ class Navigation extends Component {
           </a>
        </div>
       );
-    }
+    };
 
     return (
-      <div>
+      <div className="navigation">
         <div className="container">
-          <div className="col col-4">
-            <a onClick={(e) => this.refreshTasks()}><span className="fa fa-refresh"></span></a>
-            <a onClick={(e) => this.logout()}>Logout</a>
+          <div className="col col-2">
+            <a className="nav-title">
+              hRPG Lite Redux
+            </a>
           </div>
-          <div className="col col-4">
+          <div className="col col-7">
             {displayAuthentication()}
+         </div>
+         <div className="col col-3">
+           <ul className="list--inline nav">
+             <li>
+               <a onClick={(e) => this.refreshTasks()}>
+                Refresh <span className="fa fa-refresh"></span>
+               </a>
+             </li>
+             <li>
+               <a onClick={(e) => this.logout()}>Logout</a>
+             </li>
+           </ul>
          </div>
         </div>
       </div>
