@@ -1,4 +1,4 @@
-import { GET_AUTH, UPDATE_AUTH, LOGOUT, GET_TASKS, RECEIVE_TASKS, COMPLETED_TASK, ADDED_TASK } from '../actions/actions';
+import { GET_AUTH, UPDATE_AUTH, LOGOUT, GET_TASKS, RECEIVE_TASKS, COMPLETED_TASK, ADDED_TASK } from '<actions>/actions';
 
 export default rootReducer;
 

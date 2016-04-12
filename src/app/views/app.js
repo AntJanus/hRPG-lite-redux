@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getAuth, updateUserAuth, fetchTasks, completeTask } from '../actions/actions';
+import { getAuth, updateUserAuth, fetchTasks, completeTask } from '<actions>/actions';
 
 //components
 import TaskList from './taskList';
