@@ -1,6 +1,7 @@
 var path = require('path');
 
 module.exports = {
+  devtool: 'sourcemap',
   entry: [
     'babel-polyfill',
     ['.', '/src', '/app', '/index.js'].join(path.sep)
