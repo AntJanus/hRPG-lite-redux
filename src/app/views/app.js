@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { getAuth, updateUserAuth, fetchTasks, completeTask } from '<actions>/actions';
 
 //components
-import TaskList from './taskList';
-import Navigation from './nav';
+import TaskList from '<views>/taskList';
+import Navigation from '<views>/nav';
 
 class HabiticaApp extends Component {
   constructor(props) {

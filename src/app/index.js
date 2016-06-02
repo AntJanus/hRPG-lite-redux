@@ -6,7 +6,9 @@ import { Provider } from 'react-redux';
 import App from '<views>/app';
 import Reducers from '<reducers>/reducers';
 
-import { storeAuth } from './middleware/customMiddleware';
+import { storeAuth } from '<middleware>/customMiddleware';
+
+import actions from '<actions>/actions';
 
 let store = createStore(Reducers, applyMiddleware(storeAuth, thunkMiddleware));
 
