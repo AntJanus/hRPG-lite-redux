@@ -2,12 +2,10 @@
   presets: ['react', 'es2015'],
   plugins: ['transform-runtime',
     ['namespaces', {
-      options: {
-        redefinedRoot: true
-      },
       namespaces: {
         'root': './src',
         'actions': './src/app/actions/',
+        'middleware': './src/app/middleware',
         'reducers': './src/app/reducers/',
         'views': './src/app/views/'
       }
