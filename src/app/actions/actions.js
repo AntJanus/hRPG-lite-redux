@@ -58,7 +58,7 @@ export function fetchTasks() {
       return;
     }
 
-    return fetch(`https://habitica.com:443/api/v2/user/tasks`, {
+    return fetch(`https://habitica.com/api/v3/tasks/user`, {
         headers: {
           "X-API-User": state.auth.uuId,
           "X-Api-Key": state.auth.apiKey
@@ -66,7 +66,7 @@ export function fetchTasks() {
       })
       .then(response =>  response.json())
       .then((json) => {
-        dispatch(receiveTasks(json));
+        dispatch(receiveTasks(json.data));
       })
     ;
 
@@ -75,7 +75,7 @@ export function fetchTasks() {
 
 export function completeTask(task) {
   return function(dispatch, getState) {
-    return fetch(`https://habitica.com:443/api/v2/user/tasks/${task.id}/up`, {
+    return fetch(`https://habitica.com/api/v3/tasks/${task.id}/score/up`, {
           method: 'post',
           headers: {
             "X-API-User": getState().auth.uuId,
@@ -83,8 +83,7 @@ export function completeTask(task) {
           }
         }
       )
-      .then(response =>  response.json())
-      .then((json) => {
+      .then((response) => {
         dispatch(completedTask(task));
       })
     ;
@@ -112,7 +111,7 @@ export function failedTask(id, type) {
 
 export function addTask(name, type) {
   return function(dispatch, getState) {
-    return fetch(`https://habitica.com:443/api/v2/user/tasks`, {
+    return fetch(`https://habitica.com/api/v3/tasks/user`, {
           method: 'post',
           headers: {
             "Content-Type": "application/json",
@@ -130,7 +129,7 @@ export function addTask(name, type) {
       )
       .then(response =>  response.json())
       .then((json) => {
-        dispatch(addedTask(json));
+        dispatch(addedTask(json.data));
       })
     ;
   };
