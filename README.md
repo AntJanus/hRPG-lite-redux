@@ -4,14 +4,15 @@ A Habitica client built on redux
 ## Installation
 
 ```bash
-npm install -g webpack gulp
 npm install
 ```
 
-## Running the application
+## Building Assets
 
 ```bash
-gulp
+npm start
 ```
 
-open the `index.html` file in `./build` folder. There is currently no static/dev server.
+## Running the App
+
+Open the `index.html` file in `./build` folder. There is currently no static/dev server.
