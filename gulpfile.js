@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var webpack = require('webpack-stream');
 var postcss = require('gulp-postcss');
+var webserver = require('gulp-webserver');
 
 //post plugins
 var simpleVars = require('postcss-simple-vars');
@@ -34,7 +35,15 @@ gulp.task('html', function() {
   ;
 });
 
-gulp.task('default', ['scripts', 'html', 'styles'], function() {
+gulp.task('server', function() {
+  return gulp.src('build')
+    .pipe(webserver({
+      livereload: true
+    }))
+  ;
+});
+
+gulp.task('default', ['scripts', 'html', 'styles', 'server'], function() {
   gulp.watch('./src/app/**/**.js', ['scripts']);
   gulp.watch('./src/**/**.html', ['html']);
   gulp.watch('./src/**/**.css', ['styles']);

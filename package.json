@@ -26,6 +26,7 @@
     "babel-preset-react": "^6.5.0",
     "gulp": "^3.9.1",
     "gulp-postcss": "^6.1.0",
+    "gulp-webserver": "^0.9.1",
     "postcss-import": "^8.1.0",
     "postcss-nested": "^1.0.0",
     "postcss-simple-vars": "^1.2.0",
