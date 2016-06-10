@@ -1,4 +1,4 @@
-import { GET_AUTH, UPDATE_AUTH, LOGOUT, GET_TASKS, RECEIVE_TASKS, COMPLETED_TASK, ADDED_TASK } from '<actions>/actions';
+import { GET_AUTH, UPDATE_AUTH, LOGOUT, GET_TASKS, RECEIVE_TASKS, UNCOMPLETED_TASK, COMPLETED_TASK, ADDED_TASK } from '<actions>/actions';
 
 export default rootReducer;
 
@@ -6,34 +6,24 @@ export const initialState = {
   habit: [],
   daily: [],
   todo: [],
-  auth: {}
+  auth: {},
+  user: {}
 };
 
-function reduceTask(state, action) {
-  switch(action.type) {
-    case COMPLETED_TASK:
-      if(state.id !== action.payload.task.id) {
-        return state;
-      }
-
-      return Object.assign({}, state, { completed: true });
-
-    default:
-      return state;
-  }
-}
-
 function rootReducer(state = initialState, action) {
+  var s = {};
+
   switch(action.type) {
     case GET_TASKS:
     case RECEIVE_TASKS:
       return Object.assign({}, state, processTasks(action.payload.tasks));
+    case UPDATE_USER:
+       return userReducer(state, action);
     case COMPLETED_TASK:
-      var s = {};
+    case UNCOMPLETED_TASK:
       s[action.payload.task.type] = state[action.payload.task.type].map(task => reduceTask(task, action));
       return Object.assign({}, state, s);
     case ADDED_TASK:
-      var s = {};
       s[action.payload.task.type] = [ ...state[action.payload.task.type], action.payload.task];
       return Object.assign({}, state, s);
     case GET_AUTH:
@@ -48,6 +38,30 @@ function rootReducer(state = initialState, action) {
 
   return state;
 }
+
+function userReducer(state, action) {
+
+}
+
+function reduceTask(state, action) {
+  switch(action.type) {
+    case COMPLETED_TASK:
+      if(state.id !== action.payload.task.id) {
+        return state;
+      }
+
+      return Object.assign({}, state, { completed: true });
+    case UNCOMPLETED_TASK:
+      if(state.id !== action.payload.task.id) {
+        return state;
+      }
+
+      return Object.assign({}, state, { completed: false });
+    default:
+      return state;
+  }
+}
+
 
 function processTasks(tasks) {
   return {

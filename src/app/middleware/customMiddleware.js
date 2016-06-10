@@ -1,5 +1,5 @@
 export function storeAuth({ getState }) {
-  return (next) => (action) => {
+  return next => action => {
     let state = getState();
 
     let returnValue = next(action);
