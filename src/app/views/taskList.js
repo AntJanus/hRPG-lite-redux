@@ -20,7 +20,7 @@ class TaskList extends Component {
   }
 
   render() {
-    const { onCompleteTask, tasks } = this.props;
+    const { tasks } = this.props;
 
     let newTask;
 
@@ -32,7 +32,7 @@ class TaskList extends Component {
         </a>
         <ul className="tasks">
           { tasks.map(task =>
-            <Task task={task} onCompleteTask={onCompleteTask} key={task.id} />
+            <Task task={task} key={task.id} />
           )}
         </ul>
       </div>

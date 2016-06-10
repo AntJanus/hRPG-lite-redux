@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getAuth, updateUserAuth, fetchTasks, completeTask } from '<actions>/actions';
+import { getAuth, updateUserAuth, fetchTasks } from '<actions>/actions';
 
 //components
 import TaskList from '<views>/taskList';
@@ -15,11 +15,6 @@ class HabiticaApp extends Component {
     const { dispatch, auth } = this.props;
 
     dispatch(fetchTasks());
-  }
-
-  handleCompleteTask(task) {
-    const { dispatch, auth } = this.props;
-    dispatch(completeTask(task));
   }
 
   componentDidMount() {
@@ -43,21 +38,15 @@ class HabiticaApp extends Component {
           <div className="container">
             <div className="col col-4"k>
               <h3>Habits</h3>
-              <TaskList tasks={habit}
-                onCompleteTask={(task) => this.handleCompleteTask(task)}
-              />
+              <TaskList tasks={habit} />
             </div>
             <div className="col col-4">
               <h3>Dailies</h3>
-              <TaskList tasks={daily}
-                onCompleteTask={(task) => this.handleCompleteTask(task)}
-            />
+              <TaskList tasks={daily} />
             </div>
             <div className="col col-4">
               <h3>Todos</h3>
-              <TaskList tasks={todo}
-                onCompleteTask={(task) => this.handleCompleteTask(task)}
-              />
+              <TaskList tasks={todo} />
             </div>
           </div>
         ) : 'Please log in' }
