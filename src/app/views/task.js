@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { completeTask, uncompleteTask } from '<actions>/actions';
 
 const date = new Date();
 
@@ -21,36 +23,69 @@ class Task extends Component {
   }
 
   isAvailable(taskRepeat) {
-      var currentDay = days[day];
+    var currentDay = days[day];
 
     return !taskRepeat || taskRepeat[currentDay];
   }
 
+  completeTask(task) {
+    const { dispatch } = this.props;
+
+    dispatch(completeTask(task));
+  }
+
+  uncompleteTask(task) {
+    const { dispatch } = this.props;
+
+    dispatch(uncompleteTask(task));
+  }
+
   render() {
-    const { onCompleteTask, task } = this.props;
+    const { task } = this.props;
+
+    let taskDown = 'fa fa-check-square-o';
+    let taskUp = 'fa fa-square-o';
 
     let taskState = task.completed || !this.isAvailable(task.repeat) ? '' : parseInt(task.value) > 0 ? 'task-positive' : parseInt(task.value) < 0 ? 'task-negative' : 'task-neutral';
-    let taskIcon = task.completed ? 'fa fa-check-square-o' : 'fa fa-square-o';
+    let taskIcon = task.completed ? taskDown : taskUp;
+
+    var taskActionBar = task.type === 'habit' ? (
+      <span>
+        <a className="task-action"
+          onClick={() => this.completeTask(task)}>
+          <span className="fa fa-plus-square-o"></span>
+        </a>
+        <a className="task-action"
+          onClick={() => this.uncompleteTask(task)}>
+          <span className="fa fa-minus-square-o"></span>
+        </a>
+      </span>
+    ) : (
+      <a className="task-action"
+        onClick={() => task.completed ? this.uncompleteTask(task) : this.completeTask(task)}>
+        <span className={taskIcon}></span>
+      </a>
+    );
 
     return (
       <li className={taskState}>
-          <a className="task-action"
-            onClick={() => onCompleteTask(task)}>
-            <span className={taskIcon}></span>
-          </a>
-
-          <span className="task-content">
-            {task.text}
-            {task.streak ? (
-                <span>
-                  {' ' + task.streak}
-                  <span className="fa fa-forward"></span>
-                </span>
-              ): ''}
-          </span>
+        {taskActionBar}
+        <span className="task-content">
+          {task.text}
+          {task.streak ? (
+            <span>
+              {' ' + task.streak}
+              <span className="fa fa-forward"></span>
+            </span>
+            ) : ''}
+        </span>
       </li>
     );
   }
 }
 
-export default Task;
+function select(state) {
+  return { };
+}
+
+export default connect(select)(Task);

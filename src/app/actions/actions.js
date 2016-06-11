@@ -12,6 +12,7 @@ export const RECEIVE_TASKS = 'RECEIVE_TASKS';
 export const ADD_TASK = 'ADD_TASK';
 export const ADDED_TASK = 'ADDED_TASK';
 export const COMPLETED_TASK = 'COMPLETED_TASK';
+export const UNCOMPLETED_TASK = 'UNCOMPLETED_TASK';
 export const FAIL_TASK = 'FAIL_TASK';
 
 export function getAuth() {
@@ -74,8 +75,16 @@ export function fetchTasks() {
 }
 
 export function completeTask(task) {
+  return scoreTask(task, 'up');
+}
+
+export function uncompleteTask(task) {
+  return scoreTask(task, 'down');
+}
+
+export function scoreTask(task, direction) {
   return function(dispatch, getState) {
-    return fetch(`https://habitica.com/api/v3/tasks/${task.id}/score/up`, {
+    return fetch(`https://habitica.com/api/v3/tasks/${task.id}/score/${direction}`, {
           method: 'post',
           headers: {
             "X-API-User": getState().auth.uuId,
@@ -83,8 +92,13 @@ export function completeTask(task) {
           }
         }
       )
+      .then(response => response.json())
       .then((response) => {
-        dispatch(completedTask(task));
+        if (direction === 'up') {
+          dispatch(completedTask(task));
+        } else if (direction === 'down') {
+          dispatch(uncompletedTask(task));
+        }
       })
     ;
   };
@@ -98,6 +112,15 @@ export function completedTask(task) {
     }
   };
 };
+
+export function uncompletedTask(task) {
+  return {
+    type: UNCOMPLETED_TASK,
+    payload: {
+      task
+    }
+  };
+}
 
 export function failedTask(id, type) {
   return {
