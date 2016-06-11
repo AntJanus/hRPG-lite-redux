@@ -17,8 +17,6 @@ function rootReducer(state = initialState, action) {
     case GET_TASKS:
     case RECEIVE_TASKS:
       return Object.assign({}, state, processTasks(action.payload.tasks));
-    case UPDATE_USER:
-       return userReducer(state, action);
     case COMPLETED_TASK:
     case UNCOMPLETED_TASK:
       s[action.payload.task.type] = state[action.payload.task.type].map(task => reduceTask(task, action));

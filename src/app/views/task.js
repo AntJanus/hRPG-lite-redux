@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { completeTask, uncompleteTask } from '<actions>/actions';
 
 const date = new Date();
@@ -48,20 +49,20 @@ class Task extends Component {
     let taskState = task.completed || !this.isAvailable(task.repeat) ? '' : parseInt(task.value) > 0 ? 'task-positive' : parseInt(task.value) < 0 ? 'task-negative' : 'task-neutral';
     let taskIcon = task.completed ? taskDown : taskUp;
 
-    var taskActionBar = task.type ? (
+    var taskActionBar = task.type === 'habit' ? (
       <span>
         <a className="task-action"
           onClick={() => this.completeTask(task)}>
-          <span className={taskUp}></span>
+          <span className="fa fa-plus-square-o"></span>
         </a>
         <a className="task-action"
           onClick={() => this.uncompleteTask(task)}>
-          <span className={taskDown}></span>
+          <span className="fa fa-minus-square-o"></span>
         </a>
       </span>
     ) : (
       <a className="task-action"
-        onClick={() => this.completeTask(task)}>
+        onClick={() => task.completed ? this.uncompleteTask(task) : this.completeTask(task)}>
         <span className={taskIcon}></span>
       </a>
     );

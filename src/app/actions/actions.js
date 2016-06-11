@@ -92,8 +92,13 @@ export function scoreTask(task, direction) {
           }
         }
       )
+      .then(response => response.json())
       .then((response) => {
-        dispatch(completedTask(task));
+        if (direction === 'up') {
+          dispatch(completedTask(task));
+        } else if (direction === 'down') {
+          dispatch(uncompletedTask(task));
+        }
       })
     ;
   };

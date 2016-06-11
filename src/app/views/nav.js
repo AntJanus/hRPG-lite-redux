@@ -37,7 +37,7 @@ class Navigation extends Component {
           <input type="text" ref={node => apiKey = node }  placeholder="Api Key"/>
           <input type="text" ref={node => uuId = node }  placeholder="UUID"/>
           <a onClick={(e) => this.updateAuth(apiKey.value, uuId.value)}>
-            <span className="fa fa-plus"></span>
+            <span>Login</span>
           </a>
        </div>
       );
