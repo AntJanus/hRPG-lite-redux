@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getAuth, updateUserAuth, fetchTasks } from '<actions>/actions';
+import { getAuth, updateUserAuth, fetchTasks, getCurrentUser } from '<actions>/actions';
 
 //components
 import TaskList from '<views>/taskList';
@@ -21,6 +21,7 @@ class HabiticaApp extends Component {
     const { dispatch, auth } = this.props;
 
     dispatch(getAuth());
+    dispatch(getCurrentUser());
 
     this.refreshTasks();
   }

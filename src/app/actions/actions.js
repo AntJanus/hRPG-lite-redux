@@ -6,6 +6,8 @@ export const UPDATE_AUTH = 'UPDATE_AUTH';
 
 export const LOGOUT = 'LOGOUT';
 
+export const GET_USER = 'GET_USER';
+
 export const GET_TASKS = 'GET_TASKS';
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';
 
@@ -40,6 +42,28 @@ export function logout() {
   return {
     type: LOGOUT
   };
+}
+
+export function getCurrentUser() {
+  return function(dispatch, getState) {
+    if (!getState().auth.uuId) {
+      return;
+    }
+
+    return fetch(`https://habitica.com/api/v3/members/${getState().auth.uuId}`, {
+          method: 'get',
+          headers: {
+            "X-API-User": getState().auth.uuId,
+            "X-Api-Key": getState().auth.apiKey
+          }
+        }
+      )
+      .then(response => response.json())
+      .then(user => {
+        console.log(user, 'user?');
+      })
+    ;
+  }
 }
 
 export function receiveTasks(tasks) {
