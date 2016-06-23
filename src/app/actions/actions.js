@@ -6,7 +6,7 @@ export const UPDATE_AUTH = 'UPDATE_AUTH';
 
 export const LOGOUT = 'LOGOUT';
 
-export const GET_USER = 'GET_USER';
+export const RECEIVE_USER = 'RECEIVE_USER';
 
 export const GET_TASKS = 'GET_TASKS';
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';
@@ -60,9 +60,18 @@ export function getCurrentUser() {
       )
       .then(response => response.json())
       .then(user => {
-        console.log(user, 'user?');
+        dispatch(receiveUser(user.data));
       })
     ;
+  }
+}
+
+export function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    payload: {
+      user
+    }
   }
 }
 

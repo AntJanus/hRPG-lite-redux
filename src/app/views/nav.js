@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getAuth, updateUserAuth, logout, fetchTasks } from '<actions>/actions';
 
+import UserStats from './userStats';
+
 class Navigation extends Component {
 
   constructor(props) {
@@ -68,7 +70,7 @@ class Navigation extends Component {
          </div>
         </div>
         <div className="container">
-
+          <UserStats />
         </div>
       </div>
     );
