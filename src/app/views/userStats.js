@@ -14,11 +14,9 @@ class UserStats extends Component {
     return (
       <div>
         User stats:
-          <ul>
-            <li>HP: {stats.hp}</li>
-            <li>MP: {stats.mp}</li>
-            <li>Lvl: {stats.lvl}</li>
-          </ul>
+            <div><i className="fa fa-heart"></i> {stats.hp}</div>
+            <div><i className="fa fa-fire"></i> {stats.mp}</div>
+            <div><i className="fa fa-star"></i> {stats.lvl}</div>
       </div>
     );
   }
