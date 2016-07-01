@@ -34,7 +34,7 @@ class Navigation extends Component {
     let apiKey, uuId;
 
     let displayAuthentication = () => {
-      return auth.loggedIn ? (<div></div>) : (
+      return auth.loggedIn ? (<UserStats />) : (
         <div>
           <input type="text" ref={node => apiKey = node }  placeholder="Api Key"/>
           <input type="text" ref={node => uuId = node }  placeholder="UUID"/>
@@ -68,9 +68,6 @@ class Navigation extends Component {
              </li>
            </ul>
          </div>
-        </div>
-        <div className="container">
-          <UserStats />
         </div>
       </div>
     );

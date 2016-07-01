@@ -27,24 +27,23 @@ class UserStats extends Component {
     };
 
     return (
-      <div>
-        User stats:
-            <div>
-              <i className="fa fa-heart"></i>
-              <div class="bar-container">
-                <div class="bar-graph" style={hpStyle}>{stats.hp}</div>
-              </div>
-            </div>
-            <div><i className="fa fa-fire"></i>
-              <div class="bar-container">
-                <div class="bar-graph" style={mpStyle}>{stats.mp}</div>
-              </div>
-            </div>
-            <div><i className="fa fa-star"></i>
-              <div class="bar-container">
-                <div class="bar-graph" style={lvlStyle}>{stats.lvl}</div>
-              </div>
-            </div>
+      <div className="container">
+        <div className="col col-4">
+          <i className="fa fa-heart"></i>
+          <div class="bar-container">
+            <div class="bar-graph" style={hpStyle}>{stats.hp}</div>
+          </div>
+        </div>
+        <div className="col col-4"><i className="fa fa-fire"></i>
+          <div class="bar-container">
+            <div class="bar-graph" style={mpStyle}>{stats.mp}</div>
+          </div>
+        </div>
+        <div className="col col-4"><i className="fa fa-star"></i>
+          <div class="bar-container">
+            <div class="bar-graph" style={lvlStyle}>{stats.lvl}</div>
+          </div>
+        </div>
       </div>
     );
   }
