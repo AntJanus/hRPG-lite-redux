@@ -53,10 +53,10 @@ class Navigation extends Component {
               hRPG Lite Redux
             </a>
           </div>
-          <div className="col col-7">
+          <div className="col col-8">
             {displayAuthentication()}
          </div>
-         <div className="col col-3">
+         <div className="col col-2">
            <ul className="list--inline nav">
              <li>
                <a onClick={(e) => this.refreshTasks()}>
