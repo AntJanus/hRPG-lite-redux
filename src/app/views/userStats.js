@@ -7,9 +7,13 @@ class UserStats extends Component {
   }
 
   render() {
-    const { dispatch, user } = this.props;
+    const { dispatch, userStats } = this.props;
 
-    const stats = user.stats || {};
+    const stats = userStats || {};
+
+    if (!stats.hp) {
+      return (<div></div>);
+    }
 
     var parentStyle = {
       display: 'inline-block',
@@ -17,49 +21,34 @@ class UserStats extends Component {
       marginLeft: '5px'
     };
 
-    var hpParentStyle = Object.assign({}, parentStyle, {
-      border: '1px solid red'
-    });
-
     var hpStyle = {
-      backgroundColor: 'red',
-      width: (stats.hp / 50 * 100)+ '%'
+      width: (stats.hp / stats.maxHealth * 100)+ '%'
     };
-
-    var mpParentStyle = Object.assign({}, parentStyle, {
-      border: '1px solid blue'
-    });
 
     var mpStyle = {
-      backgroundColor: 'blue',
-      width: stats.mp + '%'
+      width: (stats.mp / stats.maxMP * 100) + '%'
     };
 
-    var lvlParentStyle = Object.assign({}, parentStyle, {
-      border: '1px solid yellow'
-    });
-
-    var lvlStyle = {
-      backgroundColor: 'yellow',
-      width: (stats.lvl) + '%'
+    var xpStyle = {
+      width: (stats.exp / stats.toNextLevel * 100) + '%'
     };
 
     return (
       <div className="container">
         <div className="col col-4">
           <i className="fa fa-heart"></i>
-          <div class="bar-container" style={hpParentStyle}>
-            <div class="bar-graph" style={hpStyle}>{Math.round(stats.hp)}</div>
+          <div className="bar-container hp-container">
+            <div className="bar-graph" style={hpStyle}>{Math.round(stats.hp)}</div>
           </div>
         </div>
         <div className="col col-4"><i className="fa fa-fire"></i>
-          <div class="bar-container" style={mpParentStyle}>
-            <div class="bar-graph" style={mpStyle}>{Math.round(stats.mp)}</div>
+          <div className="bar-container mp-container">
+            <div className="bar-graph" style={mpStyle}>{Math.round(stats.mp)}</div>
           </div>
         </div>
         <div className="col col-4"><i className="fa fa-star"></i>
-          <div class="bar-container" style={lvlParentStyle}>
-            <div class="bar-graph" style={lvlStyle}>{Math.round(stats.lvl)}</div>
+          <div className="bar-container xp-container">
+            <div className="bar-graph" style={xpStyle}>{Math.round(stats.exp)}</div>
           </div>
         </div>
       </div>
@@ -69,7 +58,7 @@ class UserStats extends Component {
 
 function select(state) {
   return {
-    user: state.user
+    userStats: state.userStats
   };
 }
 export default connect(select)(UserStats);

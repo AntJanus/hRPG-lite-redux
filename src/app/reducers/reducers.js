@@ -40,7 +40,10 @@ function rootReducer(state = initialState, action) {
 }
 
 function userReducer(state, action) {
-  return Object.assign({}, state, { user: action.payload.user });
+  return Object.assign({}, state, {
+    userStats: action.payload.user.stats,
+    tags: action.payload.user.tags
+  });
 }
 
 function reduceTask(state, action) {

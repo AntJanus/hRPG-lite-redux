@@ -50,7 +50,7 @@ export function getCurrentUser() {
       return;
     }
 
-    return fetch(`https://habitica.com/api/v3/members/${getState().auth.uuId}`, {
+    return fetch(`https://habitica.com/api/v3/user`, {
           method: 'get',
           headers: {
             "X-API-User": getState().auth.uuId,
