@@ -1,4 +1,4 @@
-import { GET_AUTH, UPDATE_AUTH, LOGOUT, GET_TASKS, RECEIVE_TASKS, UNCOMPLETED_TASK, COMPLETED_TASK, ADDED_TASK } from '<actions>/actions';
+import { GET_AUTH, UPDATE_AUTH, LOGOUT, GET_TASKS, RECEIVE_TASKS, UNCOMPLETED_TASK, COMPLETED_TASK, ADDED_TASK, RECEIVE_USER } from '<actions>/actions';
 
 export default rootReducer;
 
@@ -30,6 +30,8 @@ function rootReducer(state = initialState, action) {
       return Object.assign({}, state, { auth: Object.assign({}, action.payload, { loggedIn: true }) } );
     case LOGOUT:
       return Object.assign({}, state, { auth: { loggedIn: false}});
+    case RECEIVE_USER:
+      return userReducer(state, action);
     default:
       return state;
   };
@@ -38,7 +40,10 @@ function rootReducer(state = initialState, action) {
 }
 
 function userReducer(state, action) {
-
+  return Object.assign({}, state, {
+    userStats: action.payload.user.stats,
+    tags: action.payload.user.tags
+  });
 }
 
 function reduceTask(state, action) {

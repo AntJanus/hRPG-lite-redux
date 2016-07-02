@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getAuth, updateUserAuth, logout, fetchTasks } from '<actions>/actions';
 
+import UserStats from './userStats';
+
 class Navigation extends Component {
 
   constructor(props) {
@@ -32,7 +34,7 @@ class Navigation extends Component {
     let apiKey, uuId;
 
     let displayAuthentication = () => {
-      return auth.loggedIn ? (<div></div>) : (
+      return auth.loggedIn ? (<UserStats />) : (
         <div>
           <input type="text" ref={node => apiKey = node }  placeholder="Api Key"/>
           <input type="text" ref={node => uuId = node }  placeholder="UUID"/>
@@ -51,10 +53,10 @@ class Navigation extends Component {
               hRPG Lite Redux
             </a>
           </div>
-          <div className="col col-7">
+          <div className="col col-8">
             {displayAuthentication()}
          </div>
-         <div className="col col-3">
+         <div className="col col-2">
            <ul className="list--inline nav">
              <li>
                <a onClick={(e) => this.refreshTasks()}>
@@ -66,9 +68,6 @@ class Navigation extends Component {
              </li>
            </ul>
          </div>
-        </div>
-        <div className="container">
-
         </div>
       </div>
     );

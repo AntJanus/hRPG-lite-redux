@@ -1,0 +1,29 @@
+.bar-container {
+  display: inline-block;
+  width: 85%;
+  margin-left: 5px;
+}
+
+.hp-container {
+  border: 1px solid #e65454;
+
+  .bar-graph {
+    background-color: #e65454;
+  }
+}
+
+.mp-container {
+  border: 1px solid #5475e6;
+
+  .bar-graph {
+    background-color: #5475e6;
+  }
+}
+
+.xp-container {
+  border: 1px solid #e6cc54;
+
+  .bar-graph {
+    background-color: #e6cc54;
+  }
+}
