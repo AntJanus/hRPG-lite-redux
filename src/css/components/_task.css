@@ -1,3 +1,15 @@
+.task-add {
+  input {
+    width: 100%;
+    padding: 8px;
+  }
+
+  a {
+    margin-left: -30px;
+    padding: 7px;
+  }
+}
+
 .tasks {
   list-style: none;
   padding-left: 0;

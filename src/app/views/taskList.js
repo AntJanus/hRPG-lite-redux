@@ -26,10 +26,12 @@ class TaskList extends Component {
 
     return (
       <div>
-        <input type="text" ref={node => { newTask = node }} />
-        <a onClick={(e) => this.addTask(newTask.value)}>
-          <span className="fa fa-plus"></span>
-        </a>
+        <div className="task-add">
+          <input type="text" ref={node => { newTask = node }} />
+          <a onClick={(e) => this.addTask(newTask.value)}>
+            <span className="fa fa-plus"></span>
+          </a>
+        </div>
         <ul className="tasks">
           { tasks.map(task =>
             <Task task={task} key={task.id} />
